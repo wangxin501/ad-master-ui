@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { AppState } from '../app.service';
+import { AppState, InternalStateType } from '../app.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
 
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   /**
    * Set our default values
    */
-  public localState = { value: '' };
+  public localState: InternalStateType = { value: '' };
   /**
    * TypeScript public modifiers
    */
@@ -42,14 +42,14 @@ export class HomeComponent implements OnInit {
     public title: Title
   ) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     console.log('hello `Home` component');
     /**
      * this.title.getData().subscribe(data => this.data = data);
      */
   }
 
-  public submitState(value: string) {
+  public submitState(value: string): void {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';

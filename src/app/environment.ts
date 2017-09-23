@@ -7,12 +7,14 @@ import {
 } from '@angular/platform-browser';
 import {
   ApplicationRef,
-  enableProdMode
+  enableProdMode,
+  Provider,
+  ComponentRef
 } from '@angular/core';
 /**
  * Environment Providers
  */
-let PROVIDERS: any[] = [
+let PROVIDERS: Provider[] = [
   /**
    * Common env directives
    */
@@ -22,7 +24,7 @@ let PROVIDERS: any[] = [
  * Angular debug tools in the dev console
  * https://github.com/angular/angular/blob/86405345b781a9dc2438c0fbe3e9409245647019/TOOLS_JS.md
  */
-let _decorateModuleRef = <T>(value: T): T => { return value; };
+let _decorateModuleRef: any = <T>(value: T): T => { return value; };
 
 if ('production' === ENV) {
   enableProdMode();
@@ -46,8 +48,8 @@ if ('production' === ENV) {
 } else {
 
   _decorateModuleRef = (modRef: any) => {
-    const appRef = modRef.injector.get(ApplicationRef);
-    const cmpRef = appRef.components[0];
+    const appRef: ApplicationRef = modRef.injector.get(ApplicationRef);
+    const cmpRef: ComponentRef<any> = appRef.components[0];
 
     enableDebugTools(cmpRef);
     return modRef;
@@ -65,8 +67,8 @@ if ('production' === ENV) {
 
 }
 
-export const decorateModuleRef = _decorateModuleRef;
+export const decorateModuleRef: any = _decorateModuleRef;
 
-export const ENV_PROVIDERS = [
+export const ENV_PROVIDERS: Provider = [
   ...PROVIDERS
 ];

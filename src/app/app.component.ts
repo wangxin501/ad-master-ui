@@ -19,7 +19,6 @@ import { AppState } from './app.service';
     './app.component.css'
   ],
   template: `
-
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="#">Dashboard</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,15 +134,15 @@ import { AppState } from './app.service';
   `
 })
 export class AppComponent implements OnInit {
-  public angularclassLogo = 'assets/img/angularclass-avatar.png';
-  public name = 'Angular 2 Webpack Starter';
-  public url = 'https://twitter.com/AngularClass';
+  public angularclassLogo: string = 'assets/img/angularclass-avatar.png';
+  public name: string = 'Angular 2 Webpack Starter';
+  public url: string = 'https://twitter.com/AngularClass';
 
   constructor(
     public appState: AppState
   ) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     console.log('Initial App State', this.appState.state);
   }
 

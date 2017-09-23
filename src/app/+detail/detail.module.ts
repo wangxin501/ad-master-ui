@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './detail.routes';
 import { DetailComponent } from './detail.component';
+import { Routes } from '@angular/router';
 
 console.log('`Detail` bundle loaded asynchronously');
 
@@ -22,5 +23,5 @@ console.log('`Detail` bundle loaded asynchronously');
   ],
 })
 export class DetailModule {
-  public static routes = routes;
+  public static routes: Routes = routes;
 }

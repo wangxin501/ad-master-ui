@@ -2,9 +2,10 @@ import {
   fakeAsync,
   inject,
   tick,
-  TestBed
+  TestBed,
+  ComponentFixture
 } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { BaseRequestOptions, Http } from '@angular/http';
 import { By } from '@angular/platform-browser';
 import { MockBackend } from '@angular/http/testing';
@@ -35,10 +36,10 @@ describe('x-large directive', () => {
   it('should sent font-size to x-large', fakeAsync(() => {
     TestBed.compileComponents().then(() => {
 
-      const fixture = TestBed.createComponent(TestComponent);
+      const fixture: ComponentFixture<TestComponent> = TestBed.createComponent(TestComponent);
       fixture.detectChanges();
       tick();
-      const element = fixture.debugElement.query(By.css('div'));
+      const element: DebugElement = fixture.debugElement.query(By.css('div'));
 
       expect(element.nativeElement.style.fontSize).toBe('x-large');
 

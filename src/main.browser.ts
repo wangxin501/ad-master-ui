@@ -11,6 +11,7 @@ import { hmrModule  } from '@angularclass/hmr';
  */
 import { AppModule } from './app';
 
+
 /**
  * Bootstrap our Angular app with a top level NgModule
  */
@@ -40,7 +41,7 @@ switch (document.readyState) {
     main();
 }
 
-function _domReadyHandler() {
+function _domReadyHandler(): void {
  document.removeEventListener('DOMContentLoaded', _domReadyHandler, false);
  main();
 }

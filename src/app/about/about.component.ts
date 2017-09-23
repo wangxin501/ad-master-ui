@@ -182,7 +182,7 @@ export class AboutComponent implements OnInit {
     public route: ActivatedRoute
   ) {}
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.route
       .data
       .subscribe((data: any) => {
@@ -201,7 +201,7 @@ export class AboutComponent implements OnInit {
      */
     this.asyncDataWithWebpack();
   }
-  private asyncDataWithWebpack() {
+  private asyncDataWithWebpack(): void {
     /**
      * you can also async load mock data with 'es6-promise-loader'
      * you would do this if you don't want the mock-data bundled

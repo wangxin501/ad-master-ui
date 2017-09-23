@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './barrel.routes';
 import { BarrelComponent } from './barrel.component';
+import { Routes } from '@angular/router';
 
 console.log('`Barrel` bundle loaded asynchronously');
 
@@ -21,6 +22,7 @@ console.log('`Barrel` bundle loaded asynchronously');
     RouterModule.forChild(routes),
   ],
 })
+
 export class BarrelModule {
-  public static routes = routes;
+  public static routes: Routes = routes;
 }

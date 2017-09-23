@@ -33,11 +33,13 @@ import { XLargeDirective } from './home/x-large';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { Provider } from '@angular/core';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
 // Application wide providers
-const APP_PROVIDERS = [
+const APP_PROVIDERS: Provider = [
   ...APP_RESOLVER_PROVIDERS,
   AppState
 ];
@@ -64,6 +66,7 @@ type StoreType = {
    * Import Angular's modules.
    */
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -88,7 +91,7 @@ export class AppModule {
     public appState: AppState
   ) {}
 
-  public hmrOnInit(store: StoreType) {
+  public hmrOnInit(store: StoreType): void {
     if (!store || !store.state) {
       return;
     }
@@ -101,7 +104,7 @@ export class AppModule {
      * Set input values
      */
     if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
+      let restoreInputValues: () => void = store.restoreInputValues;
       setTimeout(restoreInputValues);
     }
 
@@ -110,12 +113,12 @@ export class AppModule {
     delete store.restoreInputValues;
   }
 
-  public hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
+  public hmrOnDestroy(store: StoreType): void {
+    const cmpLocation: any[] = this.appRef.components.map((cmp) => cmp.location.nativeElement);
     /**
      * Save state
      */
-    const state = this.appState._state;
+    const state: InternalStateType = this.appState._state;
     store.state = state;
     /**
      * Recreate root elements
@@ -131,7 +134,7 @@ export class AppModule {
     removeNgStyles();
   }
 
-  public hmrAfterDestroy(store: StoreType) {
+  public hmrAfterDestroy(store: StoreType): void {
     /**
      * Display new elements
      */

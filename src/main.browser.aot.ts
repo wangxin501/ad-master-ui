@@ -28,7 +28,7 @@ switch (document.readyState) {
     main();
 }
 
-function _domReadyHandler() {
+function _domReadyHandler(): void {
   document.removeEventListener('DOMContentLoaded', _domReadyHandler, false);
   main();
 }

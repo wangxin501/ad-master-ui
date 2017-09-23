@@ -11,14 +11,14 @@ describe('Home', () => {
   });
 
   it('should have a title', async () => {
-    let subject = await browser.getTitle();
-    let result  = 'Angular2 Webpack Starter by @gdi2290 from @AngularClass';
+    let subject: string = await browser.getTitle();
+    let result: string  = 'Angular2 Webpack Starter by @gdi2290 from @AngularClass';
     expect(subject).toEqual(result);
   });
 
   it('should have `your content here` x-large', async () => {
-    let subject = await element(by.css('[x-large]')).getText();
-    let result  = 'Your Content Here';
+    let subject: string = await element(by.css('[x-large]')).getText();
+    let result: string  = 'Your Content Here';
     expect(subject).toEqual(result);
   });
 

@@ -39,7 +39,7 @@ import '../styles/styles.scss';
 import '../styles/headings.css';
 
 // Application wide providers
-const APP_PROVIDERS: Provider = [
+const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
   AppState
 ];

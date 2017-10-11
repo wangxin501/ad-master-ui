@@ -3,13 +3,19 @@ import {
   OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { IPet } from 'src/app/domain/pet';
+import { PetWebService } from 'src/app/webservice/pet-webservice';
 
 @Component({
   selector: 'about',
+  providers: [PetWebService],
   styles: [`
   `],
   template: `
     <h1>About</h1>
+    this.petWebService = {{ petWebService.allData | json }}
+    {{message}}
 
     <section class="row text-center placeholders">
     <div class="col-6 col-sm-3 placeholder">
@@ -178,11 +184,58 @@ import { ActivatedRoute } from '@angular/router';
 export class AboutComponent implements OnInit {
 
   public localState: any;
+  public pets: IPet[];
+  private subscription: Subscription;
+  private message: string;
+
   constructor(
-    public route: ActivatedRoute
-  ) {}
+    public route: ActivatedRoute,
+    private petWebService: PetWebService
+  ) { }
 
   public ngOnInit(): void {
+
+    const self: AboutComponent = this;
+    this.subscription = this.petWebService.getObserableData().subscribe((data) => self.message += 'cool ');
+
+    this.petWebService.update(0, {
+      id: 0,
+      category: {
+        id: 0,
+        name: 'string'
+      },
+      name: 'doggie',
+      photoUrls: [
+        'string'
+      ],
+      tags: [
+        {
+          id: 0,
+          name: 'string'
+        }
+      ],
+      status: 'available'
+    });
+
+    this.petWebService.create(0, {
+      id: 0,
+      category: {
+        id: 0,
+        name: 'string'
+      },
+      name: 'doggie2',
+      photoUrls: [
+        'string'
+      ],
+      tags: [
+        {
+          id: 0,
+          name: 'string'
+        }
+      ],
+      status: 'available2'
+    });
+
     this.route
       .data
       .subscribe((data: any) => {
@@ -201,6 +254,7 @@ export class AboutComponent implements OnInit {
      */
     this.asyncDataWithWebpack();
   }
+
   private asyncDataWithWebpack(): void {
     /**
      * you can also async load mock data with 'es6-promise-loader'

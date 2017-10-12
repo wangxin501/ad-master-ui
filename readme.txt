@@ -17,3 +17,19 @@ npm run watch
 npm run build:dev
 
 npm run lint
+
+
+Swagger API Specification
+
+npm install -g http-server
+wget https://github.com/swagger-api/swagger-editor/releases/download/v2.10.4/swagger-editor.zip
+download and unzip swagger-editor.zip into downloaded folder of this project
+http-server swagger-editor
+
+OpenAPI Specification
+https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md
+
+
+Chrome Postman plugin to inspect API
+
+

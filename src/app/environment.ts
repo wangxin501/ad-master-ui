@@ -2,15 +2,16 @@
  * Angular 2
  */
 import {
-  enableDebugTools,
-  disableDebugTools
-} from '@angular/platform-browser';
-import {
   ApplicationRef,
+  ComponentRef,
   enableProdMode,
   Provider,
-  ComponentRef
 } from '@angular/core';
+import {
+  disableDebugTools,
+  enableDebugTools
+} from '@angular/platform-browser';
+
 /**
  * Environment Providers
  */
@@ -52,6 +53,7 @@ if ('production' === ENV) {
     const cmpRef: ComponentRef<any> = appRef.components[0];
 
     enableDebugTools(cmpRef);
+
     return modRef;
   };
 

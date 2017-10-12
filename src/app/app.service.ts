@@ -27,6 +27,7 @@ export class AppState {
      * Use our state getter for the clone.
      */
     const state: InternalStateType = this.state;
+
     return state.hasOwnProperty(prop) ? state[prop] : state;
   }
 

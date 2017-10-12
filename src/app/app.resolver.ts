@@ -1,7 +1,7 @@
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable, Provider } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import 'rxjs/add/observable/of';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class DataResolver implements Resolve<IResovedData> {

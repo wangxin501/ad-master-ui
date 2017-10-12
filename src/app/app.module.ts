@@ -1,47 +1,49 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {
+  ApplicationRef,
+  NgModule,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import {
-  NgModule,
-  ApplicationRef
-} from '@angular/core';
-import {
-  removeNgStyles,
-  createNewHosts,
-  createInputTransfer
-} from '@angularclass/hmr';
-import {
+  PreloadAllModules,
   RouterModule,
-  PreloadAllModules
 } from '@angular/router';
+import {
+  createInputTransfer,
+  createNewHosts,
+  removeNgStyles,
+} from '@angularclass/hmr';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
-// App is our top level component
+import { AboutComponent } from './about';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { ROUTES } from './app.routes';
 import { AppState, InternalStateType } from './app.service';
+import { ENV_PROVIDERS } from './environment';
+// App is our top level component
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
-import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
+import { NoContentComponent } from './no-content';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Provider } from '@angular/core';
 
-import '../styles/styles.scss';
+import { APIS } from '../../src-codegen';
 import '../styles/headings.css';
+import '../styles/styles.scss';
 
 // Application wide providers
 const APP_PROVIDERS: any = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  APIS
 ];
 
 type StoreType = {
@@ -54,7 +56,7 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     AboutComponent,
@@ -89,7 +91,7 @@ export class AppModule {
   constructor(
     public appRef: ApplicationRef,
     public appState: AppState
-  ) {}
+  ) { }
 
   public hmrOnInit(store: StoreType): void {
     if (!store || !store.state) {
@@ -127,7 +129,7 @@ export class AppModule {
     /**
      * Save input values
      */
-    store.restoreInputValues  = createInputTransfer();
+    store.restoreInputValues = createInputTransfer();
     /**
      * Remove styles
      */

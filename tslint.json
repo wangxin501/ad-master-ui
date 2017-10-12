@@ -210,10 +210,11 @@
     "no-consecutive-blank-lines": [
       true,
       1
-    ]
-  },
-  "comment-format": [
-    true,
-    "check-uppercase"
-  ]
+    ],
+    "comment-format": [
+      true,
+      "check-uppercase"
+    ],
+    "array-type": false
+  }
 }

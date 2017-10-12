@@ -1,11 +1,14 @@
 import {
   Component,
-  OnInit
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/takeUntil';
+import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { IPet } from 'src/app/domain/pet';
-import { PetWebService } from 'src/app/webservice/pet-webservice';
+import { PetWebService } from '../webservice/pet-webservice';
 
 @Component({
   selector: 'about',
@@ -181,11 +184,11 @@ import { PetWebService } from 'src/app/webservice/pet-webservice';
     <pre>this.localState = {{ localState | json }}</pre>
   `
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, OnDestroy {
 
   public localState: any;
   public pets: IPet[];
-  private subscription: Subscription;
+  private destroy: Subject<any> = new Subject();
   private message: string;
 
   constructor(
@@ -193,48 +196,15 @@ export class AboutComponent implements OnInit {
     private petWebService: PetWebService
   ) { }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
+
+    this.petWebService.getById(0)
+      .takeUntil(this.destroy)
+      .subscribe((pets) => {
+        console.log(pets);
+      });
 
     const self: AboutComponent = this;
-    this.subscription = this.petWebService.getObserableData().subscribe((data) => self.message += 'cool ');
-
-    this.petWebService.update(0, {
-      id: 0,
-      category: {
-        id: 0,
-        name: 'string'
-      },
-      name: 'doggie',
-      photoUrls: [
-        'string'
-      ],
-      tags: [
-        {
-          id: 0,
-          name: 'string'
-        }
-      ],
-      status: 'available'
-    });
-
-    this.petWebService.create(0, {
-      id: 0,
-      category: {
-        id: 0,
-        name: 'string'
-      },
-      name: 'doggie2',
-      photoUrls: [
-        'string'
-      ],
-      tags: [
-        {
-          id: 0,
-          name: 'string'
-        }
-      ],
-      status: 'available2'
-    });
 
     this.route
       .data
@@ -253,6 +223,11 @@ export class AboutComponent implements OnInit {
      * if you're working with mock data you can also use http.get('assets/mock-data/mock-data.json')
      */
     this.asyncDataWithWebpack();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.unsubscribe();
   }
 
   private asyncDataWithWebpack(): void {

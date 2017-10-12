@@ -3,141 +3,55 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { IBaseDomain, IErrorResponse } from 'src/app/domain/base-domain';
 import { AppUtil } from 'src/app/tools/tools/app.utils';
 
-export class CachedBaseWebService<T extends IBaseDomain> {
+export class BaseWebService<T extends IBaseDomain> {
 
-  public allData: T[] = [];
   private subject: Subject<T> = new Subject<T>();
+  private allData: Observable<T>;
 
   constructor(public $http: Http,
     public baseUrl: string) {
   }
 
-  getAll(): Promise<T[]> {
-    const self: CachedBaseWebService<T> = this;
+  getAll(): Observable<T[]> {
+    const self: BaseWebService<T> = this;
 
     return this.$http.get(this.baseUrl)
-      .toPromise()
-      .then((response) => {
-        const data: T[] = response.json() || [];
-        self.allData = data;
-
-        return data;
-      })
-      .catch(this.handleError);
+      .map((response) => response.json() as T[]);
   }
 
-  getById(id: number): Promise<T> {
-    const self: CachedBaseWebService<T> = this;
+  getById(id: number): Observable<T> {
+    const self: BaseWebService<T> = this;
 
     return this.$http.get(`${this.baseUrl}/${id}`)
-      .toPromise()
-      .then((response) => {
-        const data: T = response.json();
-        if (AppUtil.isUndefinedOrNull(data)) {
-          return null;
-        }
-
-        let found: boolean = false;
-        self.allData.forEach((element, index) => {
-          if (element.id === id) {
-            Object.assign(element, data);
-            found = true;
-          }
-        });
-        if (!found) {
-          self.allData.push(data);
-        }
-
-        return data;
-      })
-      .catch(this.handleError);
+      .map((response) => response.json() as T);
   }
 
-  deleteById(id: number): Promise<T> {
-    const self: CachedBaseWebService<T> = this;
+  deleteById(id: number): Observable<T> {
+    const self: BaseWebService<T> = this;
 
     return this.$http.delete(`${this.baseUrl}/${id}`)
-      .toPromise()
-      .then((response) => {
-        const data: T = response.json();
-        self.allData.forEach((data, index) => {
-          if (data.id === id) {
-            self.allData.splice(index, 1);
-          }
-        });
-        self.subject.next(data);
-
-        return data;
-      })
-      .catch(this.handleError);
+      .map((response) => response.json() as T);
   }
 
-  create(id: number, obj: T): Promise<T> {
-    const self: CachedBaseWebService<T> = this;
+  create(id: number, obj: T): Observable<T> {
+    const self: BaseWebService<T> = this;
 
     return this.$http.post(`${this.baseUrl}`, obj)
-      .toPromise()
-      .then((response) => {
-        const data: T = response.json();
-        self.allData.push(data);
-        self.subject.next(data);
-
-        return data;
-      })
-      .catch(this.handleError);
+      .map((response) => response.json() as T);
   }
 
-  update(id: number, obj: T): Promise<T> {
-    const self: CachedBaseWebService<T> = this;
+  update(id: number, obj: T): Observable<T> {
+    const self: BaseWebService<T> = this;
 
     return this.$http.put(`${this.baseUrl}`, obj)
-      .toPromise()
-      .then((response) => {
-        const data: T = response.json();
-        self.allData.forEach((element, index) => {
-          if (element.id === id) {
-            Object.assign(element, data);
-          }
-        });
-        self.subject.next(data);
-
-        return data;
-      })
-      .catch(this.handleError);
+      .map((response) => response.json() as T);
   }
 
   search(criteria: string): Observable<T[]> {
     return this.$http.get(`${this.baseUrl}?${criteria}`)
       .map((response) => response.json().data as T[]);
   }
-
-  getObserableData(): Observable<T> {
-    return this.subject.asObservable();
-  }
-
-  private handleError(reason: IErrorResponse): Promise<any> {
-    console.error('An error occurred', reason); // for demo purposes only
-
-    return Promise.reject(reason.message || reason);
-  }
-}
-
-export interface IBaseDomain {
-  id: number;
-  audit?: IAudit;
-  version?: number;
-}
-
-export interface IAudit {
-  createdBy: string;
-  lastModifiedBy: string;
-  creationTime: Date;
-  lastModificationTime: Date;
-}
-
-export interface IErrorResponse {
-  code: number;
-  message: string;
 }

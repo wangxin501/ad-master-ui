@@ -1,4 +1,4 @@
-import { IBaseDomain } from 'src/app/webservice/base.webservice';
+import { IBaseDomain } from 'src/app/domain/base-domain';
 
 export interface IPet extends IBaseDomain {
     category: ICategory;

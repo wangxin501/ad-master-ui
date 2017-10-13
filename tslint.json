@@ -145,7 +145,7 @@
     "no-forward-ref": true,
     "no-input-rename": true,
     "no-output-rename": true,
-    "only-arrow-functions": true,
+    "only-arrow-functions": false,
     "pipe-naming": [
       true,
       "camelCase",
@@ -182,8 +182,8 @@
     // General
     "no-console": [
       true,
-      "error",
-      "log",
+      //"error",
+      //"log",
       "time",
       "timeEnd",
       "trace",
@@ -193,7 +193,7 @@
     "no-string-literal": false,
     "no-use-before-declare": true,
     "object-literal-sort-keys": false,
-    "ordered-imports": true,
+    "ordered-imports": false,
     "quotemark": [
       true,
       "single",

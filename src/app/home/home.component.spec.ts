@@ -1,11 +1,11 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import {
-  inject,
-  async,
-  TestBed,
-  ComponentFixture
-} from '@angular/core/testing';
 import { Component } from '@angular/core';
+import {
+  async,
+  ComponentFixture,
+  inject,
+  TestBed
+} from '@angular/core/testing';
 import {
   BaseRequestOptions,
   ConnectionBackend,

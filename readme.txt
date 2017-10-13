@@ -17,6 +17,7 @@ npm run watch
 npm run build:dev
 
 npm run lint
+npm run tslint --fix ordered-import
 
 
 Swagger API Specification

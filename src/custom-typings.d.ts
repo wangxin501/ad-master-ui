@@ -43,7 +43,7 @@ import * as _ from 'lodash'
  *
  */
 
-// support NodeJS modules without type definitions
+// Support NodeJS modules without type definitions
 declare module '*';
 
 /*

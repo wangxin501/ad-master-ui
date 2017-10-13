@@ -119,7 +119,7 @@ export class CachedBaseWebService<T extends IBaseDomain> {
   }
 
   private handleError(reason: IErrorResponse): Promise<any> {
-    console.error('An error occurred', reason); // for demo purposes only
+    console.error('An error occurred', reason); // For demo purposes only
 
     return Promise.reject(reason.message || reason);
   }

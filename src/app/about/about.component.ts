@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/takeUntil';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import { IPet } from 'src/app/domain';
+import { IPet } from 'src/app/model';
 import { PetWebService } from '../service';
 
 @Component({

@@ -3,10 +3,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { IBaseDomain, IErrorResponse } from 'src/app/domain';
+import { IBaseModel, IErrorResponse } from 'src/app/model';
 import { AppUtil } from '../tools/app.utils';
 
-export class CachedBaseWebService<T extends IBaseDomain> {
+export class CachedBaseWebService<T extends IBaseModel> {
 
   public allData: T[] = [];
   private subject: Subject<T> = new Subject<T>();

@@ -1,4 +1,4 @@
-export interface IBaseDomain {
+export interface IBaseModel {
   id: number;
   createdBy?: string;
   lastModifiedBy?: string;

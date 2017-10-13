@@ -3,10 +3,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { IBaseDomain, IErrorResponse } from 'src/app/domain';
+import { IBaseModel, IErrorResponse } from 'src/app/model';
 import { AppUtil } from '../tools/app.utils';
 
-export class BaseWebService<T extends IBaseDomain> {
+export class BaseWebService<T extends IBaseModel> {
 
   private subject: Subject<T> = new Subject<T>();
   private allData: Observable<T>;

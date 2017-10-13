@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPet } from 'src/app/domain/pet';
-import { BaseWebService } from './base.webservice';
+import { IPet } from '../domain/pet';
+import { BaseWebService } from './base.service';
 
 @Injectable()
 export class PetWebService extends BaseWebService<IPet> {

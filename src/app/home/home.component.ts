@@ -3,7 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 
-import { AppState, InternalStateType } from '../app.service';
+import { AppState, InternalStateType } from '../service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
 

@@ -1,4 +1,4 @@
-import { IBaseDomain } from 'src/app/domain/base-domain';
+import { IBaseDomain } from 'src/app/domain';
 
 export interface IPet extends IBaseDomain {
     category: ICategory;

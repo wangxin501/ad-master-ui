@@ -24,7 +24,7 @@ import { AboutComponent } from './about';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { ROUTES } from './app.routes';
-import { AppState, InternalStateType } from './app.service';
+import { AppState, InternalStateType } from './service';
 import { ENV_PROVIDERS } from './environment';
 // App is our top level component
 import { HomeComponent } from './home';

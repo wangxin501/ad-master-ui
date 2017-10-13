@@ -3,8 +3,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { IBaseDomain, IErrorResponse } from 'src/app/domain/base-domain';
-import { AppUtil } from 'src/app/tools/tools/app.utils';
+import { IBaseDomain, IErrorResponse } from 'src/app/domain';
+import { AppUtil } from '../tools/app.utils';
 
 export class BaseWebService<T extends IBaseDomain> {
 

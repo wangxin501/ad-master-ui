@@ -7,9 +7,7 @@ console.log('`CreatePublisher` component loaded asynchronously');
 
 @Component({
   selector: 'create-publisher',
-  template: `
-    <h1>Hello from Create Publisher</h1>    
-  `,
+  templateUrl: './create-publisher.html'
 })
 export class CreatePublisherComponent implements OnInit {
 

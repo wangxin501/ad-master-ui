@@ -7,9 +7,7 @@ console.log('`CreateAccount` component loaded asynchronously');
 
 @Component({
   selector: 'create-account',
-  template: `
-    <h1>Hello from Create account Detail 1</h1>    
-  `,
+  templateUrl: './create-account.html'
 })
 export class CreateAccountComponent implements OnInit {
 
